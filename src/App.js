@@ -1,26 +1,29 @@
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { Link, Route, Switch } from 'react-router-dom';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
-}
+import MoviesList from './components/MoviesList.js';
+import Movie from './components/Movie.js';
+import MovieCreate from './components/MovieCreate.js';
+import MovieEdit from './components/MovieEdit.js';
+import MoviesHome from './components/MoviesHome.js';
+
+const App = () => (
+  <>
+    <header>
+      <Link to="/">Home</Link>
+      <Link to="/movies/create">Create</Link>
+      <Link to="/movies">All Movies</Link>
+    </header>
+    <main>
+      <Switch>
+        <Route exact path="/" component={MoviesHome} />
+        <Route exact path="/movies/create" component={MovieCreate} />
+        <Route exact path="/movies" component={MoviesList} />
+        <Route exact path="/movies/:id" component={Movie} />
+        <Route exact path="/movies/:id/edit" component={MovieEdit} />
+      </Switch>
+    </main>
+  </>
+);
 
 export default App;
